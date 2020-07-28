@@ -14,9 +14,14 @@ export const typeDefs = gql`
     result: [Booking!]!
   }
 
-  enum ListingType{
+  enum ListingType {
     APARTMENT
     HOUSE
+  }
+
+  enum ListingsFilter {
+    PRICE_LOW_TO_HIGH
+    PRICE_HIGH_TO_LOW
   }
 
   type Listing {
@@ -39,7 +44,7 @@ export const typeDefs = gql`
     result: [Listing!]!
   }
 
-  type User{
+  type User {
     id: ID!
     name: String!
     avatar: String!
@@ -66,7 +71,7 @@ export const typeDefs = gql`
     authUrl: String!
     user(id: ID!): User!
     listing(id: ID!): Listing!
-    listings: String!
+    listings(filter: ListingsFilter!, limit: Int!, page: Int!): Listings!
   }
 
   type Mutation { 
